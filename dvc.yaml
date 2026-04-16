@@ -4,8 +4,6 @@ stages:
     deps:
       - src/raw_data/weather.csv
       - preprocess_dataset.py
-    outs:
-      - src/processed_data/weather.csv
 
   train:
     cmd: python train.py
