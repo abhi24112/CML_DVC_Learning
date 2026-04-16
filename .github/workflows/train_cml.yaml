@@ -5,9 +5,6 @@ name: model-training
 on: 
   pull_request:
     branches: main
-  
-# Permission
-permission: write-all
 
 # Jobs and runner
 jobs:
