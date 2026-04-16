@@ -1,0 +1,14 @@
+stages:
+  print:
+    cmd: ./print.sh
+    deps:
+    - print.sh
+    outs:
+    - pages
+  scan:
+    cmd: ./scan.sh
+    deps:
+    - pages
+    - scan.sh
+    outs:
+    - signed.pdf
