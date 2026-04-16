@@ -1,0 +1,24 @@
+stages:
+  preprocess:
+    cmd: python preprocess_dataset.py
+    deps:
+      - src/raw_data/weather.csv
+      - preprocess_dataset.py
+    outs:
+      - src/processed_data/weather.csv
+
+  train:
+    cmd: python train.py
+    deps:
+      - src/processed_data/weather.csv
+      - train.py
+      - model.py
+      - utils_and_constants.py
+    metrics:
+      - metrics.json:
+          cache: false
+    plots:
+      - confusion_matrix.png:
+          cache: false
+    outs:
+      - src/models/model.pkl
