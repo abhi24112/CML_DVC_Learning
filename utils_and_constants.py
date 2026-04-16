@@ -6,6 +6,7 @@ DROP_COLNAMES = ["Date"]
 TARGET_COLUMN = "RainTomorrow"
 RAW_DATASET = "src/raw_data/weather.csv"
 PROCESSED_DATASET = "src/processed_data/weather.csv"
+MODEL_PATH = "src/models/model.pkl"
 
 
 def delete_and_recreate_dir(path):

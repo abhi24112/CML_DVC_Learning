@@ -7,3 +7,5 @@
 /processed_data.csv
 /plots.png
 /metrics.txt
+
+__pycache__

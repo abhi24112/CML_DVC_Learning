@@ -4,8 +4,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 from metrics_and_plots import plot_confusion_matrix, save_metrics
-from model import evaluate_model, train_model
-from utils_and_constants import PROCESSED_DATASET, TARGET_COLUMN
+from model import evaluate_model, train_model, save_model
+from utils_and_constants import PROCESSED_DATASET, TARGET_COLUMN, MODEL_PATH
 
 
 def load_data(file_path):
@@ -27,6 +27,7 @@ def main():
     print("======================================================")
 
     save_metrics(metrics)
+    save_model(model, MODEL_PATH)
     plot_confusion_matrix(model, X_test, y_test)
 
 

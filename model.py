@@ -1,4 +1,6 @@
 import json
+import pickle
+from pathlib import Path
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 
@@ -29,3 +31,10 @@ def evaluate_model(model, X_test, y_test, float_precision=4):
     return json.loads(
         json.dumps(metrics), parse_float=lambda x: round(float(x), float_precision)
     )
+
+
+def save_model(model, model_path):
+    Path(model_path).parent.mkdir(parents=True, exist_ok=True)
+    with open(model_path, "wb") as f:
+        pickle.dump(model, f)
+    print(f"Model saved to {model_path}")

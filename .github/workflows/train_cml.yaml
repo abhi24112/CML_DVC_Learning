@@ -1,0 +1,51 @@
+# Workflow name
+name: model-training
+
+# trigger
+on: 
+  pull_request:
+    branches: main
+  
+# Permission
+permission: write-all
+
+# Jobs and runner
+jobs:
+  train_and_report_eval_performance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Setup Python
+        uses: actions/set-python@v4
+        with: 
+          python-version: 3.9
+      
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      
+      - name: Setup CML
+        uses: iterative/set-cml@v1
+
+      - name: Pull DVC Data
+        run: dvc pull
+
+      - name: Run DVC Pipeline
+        run: dvc repro
+
+      - name: Write CML Report
+        env:
+          REPO_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        run: |
+          cat metrics.json >> model_eval_report.md
+          echo "![confusion matrix plot](./confusion_matrix.png)" >> model_eval_report.md
+          cml comment create model_eval_report.md
+
+      - name: Commit DVC Lock
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add dvc.lock
+          git commit -m "Update dvc.lock from pipeline run" || echo "No changes to commit"
+          git push
