@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: main
 
+# Permissions
+permissions:
+  pull-requests: write
+  contents: write
+
 # Jobs and runner
 jobs:
   train_and_report_eval_performance:
