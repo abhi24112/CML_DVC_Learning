@@ -27,7 +27,7 @@ def read_dataset(
     Returns:
     pd.Dataframe: Target encoded dataframe
     """
-    df = pd.read_csv(filename).drop(columns=drop_columns)
+    df = pd.read_csv(filename).drop(columns=drop_columns, errors='ignore')
     df[target_column] = df[target_column].map({"Yes": 1, "No": 0})
     return df
 
