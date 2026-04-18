@@ -39,6 +39,10 @@ jobs:
         env:
           REPO_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: |
-          cat metrics.json >> model_eval_report.md
+          # Compare metrics with main branch
+          git fetch --prune
+          dvc metrics diff --md main >> metrics_compare.md
+          # Plotting the confusion metrix
           echo "![confusion matrix plot](./confusion_matrix.png)" >> model_eval_report.md
-          cml comment create model_eval_report.md
+          # Create comment from markdown report
+          cml comment create metrics_compare.md
