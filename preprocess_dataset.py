@@ -101,7 +101,7 @@ def main():
 
     # Impute and scale features
     weather_features_processed = impute_and_scale_data(
-        weather.drop(columns=TARGET_COLUMN, axis=1)
+        weather.drop(columns=TARGET_COLUMN)
     )
 
     # Write processed dataset
