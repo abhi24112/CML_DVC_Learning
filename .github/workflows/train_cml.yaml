@@ -46,3 +46,4 @@ jobs:
           echo "![confusion matrix plot](./confusion_matrix.png)" >> model_eval_report.md
           # Create comment from markdown report
           cml comment create metrics_compare.md
+          cml comment create model_eval_report.md
