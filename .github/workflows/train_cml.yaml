@@ -32,9 +32,6 @@ jobs:
       - name: Setup CML
         uses: iterative/setup-cml@v1
 
-      - name: Pull DVC Data
-        run: dvc pull --force
-
       - name: Run DVC Pipeline
         run: dvc repro
 
