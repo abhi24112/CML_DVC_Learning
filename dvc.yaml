@@ -18,5 +18,3 @@ stages:
     plots:
       - confusion_matrix.png:
           cache: false
-    outs:
-      - src/models/model.pkl
