@@ -1,6 +1,7 @@
 .env
 .vscode
 
+/src/models/model.pkl
 /confusion_matrix.png
 /pages
 /signed.pdf
